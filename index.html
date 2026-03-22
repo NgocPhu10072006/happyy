@@ -1,0 +1,737 @@
+ <!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Chúc Mừng Sinh Nhật</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    overflow-x: hidden;
+}
+
+/* ===== TRANG ===== */
+.page1, .page2, .page3 {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.page1 {
+    height:100vh;
+    width:100vw;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    background: url("anh12.jpg") no-repeat center center;
+    background-size: cover;
+    color: white;
+}
+
+.page2 {
+    display: none;
+    background: url("anh11.jpg") no-repeat center center;
+    background-size: cover;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+.page3 {
+    display: none;
+    background: url("anh13.jpg") no-repeat center center;
+    background-size: cover;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+.page3 h1{
+    font-size: 40px;
+    color: #fff;
+    animation: glowText 1.5s infinite alternate;
+}
+
+@keyframes glowText{
+    from{ text-shadow:0 0 10px #fff; }
+    to{ text-shadow:0 0 30px #ff0080,0 0 50px #ff80ab; }
+}
+/* ===== TEXT ===== */
+.glow-text {
+    font-size: 50px;
+    animation: glow 1.5s infinite alternate;
+}
+@keyframes glow {
+    from { text-shadow: 0 0 10px #fff; }
+    to { text-shadow: 0 0 30px #ff80ab; }
+}
+
+/* ===== BUTTON ===== */
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+    z-index: 10; /* Đảm bảo button luôn bấm được */
+}
+
+/* ===== POSTER (ẢNH KHÔNG CHẠY) ===== */
+.poster {
+    position: relative;
+    padding: 40px;
+    border-radius: 20px;
+    overflow: hidden;
+    z-index: 2;
+    color: white;
+    box-shadow: 0 0 30px rgba(255,255,255,0.3);
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+/* ảnh nền đứng yên */
+.poster::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("avatar.jpg") no-repeat center center;
+    background-size: cover;
+    z-index: -2;
+}
+
+/* lớp phủ tối */
+.poster::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.poster-title {
+    font-size: 45px;
+    color: rgb(0, 217, 255);
+    animation: glowBlue 1.5s infinite alternate;
+}
+@keyframes glowBlue {
+    from { text-shadow: 0 0 10px #fff; }
+    to { text-shadow: 0 0 30px #00f2fe; }
+}
+
+.poster-box {
+    background: rgba(255,255,255,0.2);
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px;
+    color: #c3ff00;  /* màu chữ */
+}
+
+/* ===== CỜ ===== */
+.flags {
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    z-index: 1;
+}
+
+.flag {
+    width: 25px;
+    height: 35px;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    animation: swing 2s infinite alternate;
+}
+
+.flag:nth-child(odd){ background: yellow; }
+.flag:nth-child(even){ background: pink; }
+
+@keyframes swing {
+    from { transform: rotate(-15deg); }
+    to { transform: rotate(15deg); }
+}
+
+/* ===== BÓNG ===== */
+.side-balloons {
+    position: absolute;
+    width: 100px;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.left { left: 0; }
+.right { right: 0; }
+
+.side-balloons .balloon {
+    position: absolute;
+    bottom: -120px;
+    width: 50px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    color: white;
+    text-align: center;
+    animation: sideFly linear infinite;
+    .side-balloons .balloon::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 60px;
+    background: white;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    }
+}
+
+.side-balloons .balloon:nth-child(1){ background:red; left:10px; animation-duration:6s; animation-delay:0s; }
+.side-balloons .balloon:nth-child(2){ background:yellow; left:40px; animation-duration:7s; animation-delay:1s; }
+.side-balloons .balloon:nth-child(3){ background:pink; left:20px; animation-duration:8s; animation-delay:2s; }
+.side-balloons .balloon:nth-child(4){ background:orange; left:60px; animation-duration:6.5s; animation-delay:3s; }
+.side-balloons .balloon:nth-child(5){ background:blue; left:30px; animation-duration:7.5s; animation-delay:4s; }
+.side-balloons .balloon:nth-child(6){ background:purple; left:50px; animation-duration:6s; animation-delay:5s; }
+.side-balloons .balloon:nth-child(7){ background:cyan; left:70px; animation-duration:7s; animation-delay:6s; }
+.side-balloons .balloon:nth-child(8){ background:lime; left:25px; animation-duration:8s; animation-delay:7s; }
+.side-balloons .balloon:nth-child(9){ background:gold; left:55px; animation-duration:6.5s; animation-delay:8s; }
+.side-balloons .balloon:nth-child(10){ background:pink; left:75px; animation-duration:7s; animation-delay:9s; }
+
+@keyframes sideFly {
+    100% { transform: translateY(-120vh); opacity:0; }
+}
+
+/* ===== TRANG 3 ===== */
+/* Container mới để chứa thiệp và ảnh xung quanh */
+.card-container {
+    position: relative;
+    width: 500px;
+    height: 300px;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: 1s;
+    cursor: pointer;
+    z-index: 5; /* Nằm trên ảnh nhấp nháy */
+}
+
+.card.open { transform: rotateY(180deg); }
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backface-visibility: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.card-front { background: rgb(192, 255, 243); color: #333; font-size: 24px; font-weight: bold;}
+.card-back {
+    background: rgb(255, 255, 255);
+    transform: rotateY(180deg);
+    color: red;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+/* ===== ẢNH NHẤP NHÁY XUNG QUANH THIỆP ===== */
+.surround-photo {
+    position: absolute;
+    width: 80px;  /* Kích thước ảnh nhỏ */
+    height: 80px;
+    border-radius: 50%; /* Làm tròn ảnh */
+    object-fit: cover;
+    border: 3px solid white;
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    z-index: 1; /* Nằm dưới thiệp */
+
+    /* Animation nhấp nháy */
+    animation: photoBlink 2s infinite ease-in-out;
+}
+
+/* Định vị 5 tấm ảnh */
+.photo-1 { top: -50px; left: -50px; animation-delay: 0s; }
+.photo-2 { top: -50px; right: -50px; animation-delay: 0.4s; }
+.photo-3 { bottom: -100px; left: -90px; animation-delay: 0.8s; }
+.photo-4 { bottom: -100px; right: -90px; animation-delay: 1.2s; }
+@keyframes photoBlink {
+    0%, 100% { opacity: 0.2; transform: scale(0.9) rotate(-5deg); box-shadow: 0 0 5px #fff; }
+    50% { opacity: 1; transform: scale(1.1) rotate(5deg); box-shadow: 0 0 20px #ff80ab, 0 0 30px #fff; }
+}
+/* Giữ nguyên vị trí translateY cho photo-5 trong keyframe */
+@keyframes photoBlink {
+    0%, 100% { opacity: 0.2; transform: translateY(-50%) scale(0.9) rotate(-5deg); box-shadow: 0 0 5px #fff; }
+    50% { opacity: 1; transform: translateY(-50%) scale(1.1) rotate(5deg); box-shadow: 0 0 20px #ff80ab, 0 0 30px #fff; }
+}
+@keyframes photoBlink5 {
+    0%, 100% { opacity: 0.2; transform: translateY(-50%) scale(0.9) rotate(-5deg); box-shadow: 0 0 5px #fff; }
+    50% { opacity: 1; transform: translateY(-50%) scale(1.1) rotate(5deg); box-shadow: 0 0 20px #ff80ab, 0 0 30px #fff; }
+}
+
+
+/* ===== GALLERY (Dưới thấp) ===== */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    padding: 20px;
+    width: 80%;
+    margin-top: 30px;
+}
+.gallery img {
+    width: 170px;
+    height: 135px;   /* chiều cao bằng chiều rộng để thành hình vuông */
+    object-fit: cover;
+    border-radius: 10px;
+    border: 4px solid white;
+}
+
+/* ===== HIỆU ỨNG RƠI ===== */
+.heart {
+    position: absolute;
+    color: rgb(255, 0, 0);
+    font-size: 80px;   /* kích thước trái tim */
+    z-index: 0;
+    animation: floatHeart 5s linear infinite;
+}
+@keyframes floatHeart {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-120vh); opacity: 0; }
+}
+
+/* ===== Ô PHÁT SÁNG ===== */
+.sparkles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none; /* Không cản trở click */
+}
+
+.square {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ffffff;
+    border-radius: 3px;
+
+    box-shadow:
+        0 0 5px #fff,
+        0 0 10px #00f2fe,
+        0 0 20px #00f2fe;
+
+    animation: glowAnim infinite ease-in-out;
+}
+
+@keyframes glowAnim {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.3) rotate(180deg);
+        box-shadow:
+            0 0 10px #fff,
+            0 0 20px #00f2fe,
+            0 0 40px #00f2fe;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5) rotate(360deg);
+    }
+}
+  .run-text{
+    position:absolute;
+    bottom:-100px;
+    font-size:60px;
+    font-weight:bold;
+    color:#fff;
+    text-shadow:
+        0 0 10px #fff,
+        0 0 20px #ff80ab,
+        0 0 40px #ff0080;
+    animation:runUp 6s linear infinite;
+}  
+.run-text{
+    position: absolute;
+    bottom: -100px;
+    font-size: 50px;
+    font-weight: bold;
+    color: yellow;
+    animation: runUp 6s linear infinite;
+    white-space: nowrap;
+}
+
+@keyframes runUp{
+    0%{
+        bottom:-100px;
+        opacity:0;
+    }
+    50%{
+        opacity:1;
+    }
+    100%{
+        bottom:110%;
+        opacity:0;
+    }
+}
+/* ===== CỜ TRANG 3 ===== */
+.flags3{
+    position:absolute;
+    top:30px;
+    width:100%;
+    display:flex;
+    justify-content:space-around;
+    z-index:2;
+}
+
+.flag3{
+    width:30px;
+    height:40px;
+    clip-path: polygon(0 0,100% 0,50% 100%);
+    animation: swingFlag 2s infinite alternate;
+}
+
+.flag3:nth-child(odd){
+    background: rgb(0, 195, 255);
+}
+
+.flag3:nth-child(even){
+    background: rgb(192, 243, 255);
+    .flag3:nth-child(odd){
+    background: rgb(0, 195, 255);
+}
+
+.flag3:nth-child(even){
+    background: rgb(192, 243, 255);
+}
+}
+.flag3:nth-child(odd){
+    background: rgb(0, 195, 255);
+}
+
+.flag3:nth-child(even){
+    background: rgb(192, 243, 255);
+    .flag3:nth-child(odd){
+    background: rgb(0, 195, 255);
+}
+
+.flag3:nth-child(even){
+    background: rgb(192, 243, 255);
+}
+}
+@keyframes swingFlag{
+    from{ transform: rotate(-15deg); }
+    to{ transform: rotate(15deg); }
+}
+/* ===== HAPPY BIRTHDAY BAY TỪ NHIỀU HƯỚNG ===== */
+
+.floating-text{
+    position:absolute;
+    font-size:40px;
+    font-weight:bold;
+    color:white;
+    text-shadow:
+        0 0 10px #fff,
+        0 0 20px #ff80ab,
+        0 0 40px #ff0080;
+    white-space:nowrap;
+}
+
+/* từ dưới lên */
+.text1{
+    left:10%;
+    bottom:-100px;
+    animation:moveUp 8s linear infinite;
+}
+
+/* từ trái sang */
+.text2{
+    top:40%;
+    left:-400px;
+    animation:moveRight 9s linear infinite;
+}
+
+/* từ phải sang */
+.text3{
+    top:60%;
+    right:-400px;
+    animation:moveLeft 10s linear infinite;
+}
+
+/* từ trên xuống */
+.text4{
+    top:-100px;
+    left:60%;
+    animation:moveDown 7s linear infinite;
+}
+
+@keyframes moveUp{
+    0%{bottom:-100px;}
+    100%{bottom:110%;}
+}
+
+@keyframes moveRight{
+    0%{left:-400px;}
+    100%{left:110%;}
+}
+
+@keyframes moveLeft{
+    0%{right:-400px;}
+    100%{right:110%;}
+}
+
+@keyframes moveDown{
+    0%{top:-100px;}
+    100%{top:110%;}
+}
+.button-box{
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    margin-top:20px;
+}
+
+body{
+    margin:0;
+    overflow-x:hidden;
+    touch-action:manipulation;
+}
+</style>
+</head>
+
+<body>
+
+<div class="page1" id="page1">
+    <h1 class="glow-text">🎂 HAPPY BIRTHDAY🎂</h1>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <button onclick="goPage2()">Next</button>
+    <div class="floating-text text1">🎉 HAPPY BIRTHDAY 🎉</div>
+    <div class="floating-text text2">🎂 HAPPY BIRTHDAY 🎂</div>
+    <div class="floating-text text3"> HAPPY BIRTHDAY </div>
+    <div class="floating-text text4">🎊 HAPPY BIRTHDAY 🎊</div>
+</div>
+
+<div class="page2" id="page2">
+    <div class="sparkles" id="sparkles"></div> <div class="flags">
+        <div class="flag"></div><div class="flag"></div><div class="flag"></div>
+        <div class="flag"></div><div class="flag"></div><div class="flag"></div>
+        <div class="flag"></div><div class="flag"></div><div class="flag"></div>
+        <div class="flag"></div>
+    </div>
+
+    <div class="side-balloons left">
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+    </div>
+
+    <div class="side-balloons right">
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+    </div>
+
+    <div class="poster">
+        <h1 class="poster-title"> 🎉HAPPY BIRTHDAY ĐỖ THANH THẢO🎉</h1>
+                 <div class="run-text">🎉 HAPPY BIRTHDAY 🎉</div>
+                 <div class="run-text">🎉 HAPPY BIRTHDAY 🎉</div>
+
+        <div class="poster-box">
+            🎂 Happy birthday little girl. May the new age always be happy and love your life🎉🎉🎉
+        </div>
+
+        <img src="anh6.jpg" width="200" height="200" style="object-fit:cover; border-radius:50%; border:3px solid white;">
+        <br>
+       <div class="button-box">
+       <button onclick="goPage1()">Come back</button>
+       <button onclick="goPage3()">Next</button>
+</div>
+    </div>
+
+</div>
+
+<div class="page3" id="page3">
+    <div class="sparkles" id="sparkles3"></div> <h1>🎉 HAPPY BIRTHDAY 🎉</h1>
+      <div class="run-text">🎉 HAPPY BIRTHDAY 🎉</div>
+     <div class="run-text">🎉 HAPPY BIRTHDAY 🎉</div>
+    <div class="flags3">
+    <div class="flag3"></div>
+    <div class="flag3"></div>
+    <div class="flag3"></div>
+    <div class="flag3"></div>
+    <div class="flag3"></div>
+    <div class="flag3"></div>
+    <div class="flag3"></div>
+    <div class="flag3"></div>
+</div>
+
+
+    <div class="card-container">
+        <img src="anh7.jpg" class="surround-photo photo-1" alt="anh 1">
+        <img src="anh8.jpg" class="surround-photo photo-2" alt="anh 2">
+        <img src="anh15.jpg" class="surround-photo photo-3" alt="anh 3">
+        <img src="anh10.jpg" class="surround-photo photo-4" alt="anh 4">
+
+
+        <div class="card" onclick="this.classList.toggle('open')">
+            <div class="card-front">Please Click Here</div>
+            <div class="card-back">Hôm nay là ngày mà một thiên thần chào đời, đón những niềm vui rực rỡ, và đó đã trở thành ngày sinh nhật 23/03/2006, chúc cậu Đỗ Thanh Thảo tuổi mới luôn vui vẻ hạnh phúc, luôn có những bước tiến mới, thành công, suôn sẻ, luôn tìm được hướng đi cho chính mình, chúc cậu có được tất cả những may mắn của tuổi mới nhé. Tuổi mới hạnh phúc, đong đầy niềm vui cậu nhé.</div>
+        </div>
+    </div>
+
+    <div class="gallery">
+        <img src="anh15.jpg" alt="g1">
+        <img src="anh16.jpg" alt="g2">
+        <img src="anh17.jpg" alt="g3">
+        <img src="anh18.jpg" alt="g4">
+    </div>
+
+ <div class="side-balloons left">
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+    </div>
+
+    <div class="side-balloons right">
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+        <div class="balloon">🎉 Happy Birthday</div>
+    </div>
+    <button onclick="goPage2()">Come Back</button>
+</div>
+
+<script>
+// Khai báo biến global cho các page
+const page1 = document.getElementById("page1");
+const page2 = document.getElementById("page2");
+const page3 = document.getElementById("page3");
+
+function goPage1(){
+    page1.style.display="flex";
+    page2.style.display="none";
+    page3.style.display="none";
+}
+function goPage2(){
+    page1.style.display="none";
+    page2.style.display="flex";
+    page3.style.display="none";
+}
+function goPage3(){
+    page2.style.display="none";
+    page3.style.display="flex";
+}
+
+// Tạo trái tim rơi (hiển thị trên toàn body)
+setInterval(()=>{
+    // Chỉ tạo trái tim nếu page2 hoặc page3 đang hiển thị
+    if(page2.style.display === "flex" || page3.style.display === "flex"){
+        let heart=document.createElement("div");
+        heart.className="heart";
+        heart.innerText="💖";
+        heart.style.left=Math.random()*100+"%";
+        // Random kích thước trái tim
+        heart.style.fontSize = (10 + Math.random()*30) + "px";
+        heart.style.animationDuration = (3 + Math.random()*3) + "s";
+
+        document.body.appendChild(heart);
+        setTimeout(()=>heart.remove(),5000);
+    }
+},800);
+
+// Hàm tạo ô lấp lánh container cụ thể
+function createSparkles(containerId) {
+    const container = document.getElementById(containerId);
+    if(!container) return;
+
+    let square = document.createElement("div");
+    square.className = "square";
+
+    // random vị trí bên trong container
+    square.style.left = Math.random()*100 + "%";
+    square.style.top = Math.random()*100 + "%";
+
+    // random kích thước
+    let size = 5 + Math.random()*10;
+    square.style.width = size + "px";
+    square.style.height = size + "px";
+
+    // random thời gian nhấp nháy
+    square.style.animationDuration = (1 + Math.random()*2) + "s";
+
+    container.appendChild(square);
+
+    setTimeout(()=>square.remove(),3000);
+}
+
+// Chạy sparkle cho page 2
+setInterval(() => {
+    if(page2.style.display === "flex"){
+        createSparkles("sparkles");
+    }
+}, 200);
+
+// Chạy sparkle cho page 3
+setInterval(() => {
+    if(page3.style.display === "flex"){
+        createSparkles("sparkles3");
+    }
+}, 500);
+const music = new Audio("happy birthday.mp3");
+
+function goPage2(){
+    page1.style.display="none";
+    page2.style.display="flex";
+    page3.style.display="none";
+
+    music.play();
+}
+
+
+</script>
+
+</body>
+</html>
